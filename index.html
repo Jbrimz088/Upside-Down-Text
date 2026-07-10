@@ -33,10 +33,17 @@
             height: 120px;
             resize: vertical;
         }
-        .output-box { 
+        /* Rotates the entire container to flip text upside down */
+        #outputText { 
             background: #0d1117; 
             border-left: 4px solid #58a6ff;
             font-size: 24px;
+            transform: rotate(180deg);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 120px;
+            white-space: pre-wrap;
         }
     </style>
 </head>
@@ -49,22 +56,16 @@
     <textarea id="inputText" placeholder="Type here..."></textarea>
 
     <label for="outputText">Output Result</label>
-    <textarea id="outputText" class="output-box" readonly></textarea>
+    <div id="outputText"></div>
 </div>
 
 <script>
-    const map = {
-        'a': 'ɐ', 'b': 'q', 'c': 'ɔ', 'd': 'p', 'e': 'ǝ', 'f': 'ɟ', 'g': 'ƃ', 'h': 'ɥ', 
-        'i': 'ᴉ', 'j': 'ɾ', 'k': 'ʞ', 'l': '7', 'm': 'ɯ', 'n': 'u', 'o': 'o', 'p': 'd', 
-        'q': 'b', 'r': 'ɹ', 's': 's', 't': 'ʇ', 'u': 'n', 'v': 'ʌ', 'w': 'ʍ', 'x': 'x', 
-        'y': 'ʎ', 'z': 'z', '7': '7'
-    };
-
     const input = document.getElementById('inputText');
     const output = document.getElementById('outputText');
 
     input.addEventListener('input', () => {
-        output.value = input.value.split('').reverse().map(char => map[char.toLowerCase()] || char).join('');
+        // Reverses the string and updates the div content
+        output.innerText = input.value.split('').reverse().join('');
     });
 </script>
 
