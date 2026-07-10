@@ -3,33 +3,57 @@
 <head>
     <title>Upside Down Text</title>
     <style>
-        body { font-family: sans-serif; padding: 20px; }
-        textarea { width: 100%; height: 100px; display: block; margin-bottom: 20px; }
-        #output { font-size: 24px; word-wrap: break-word; }
+        body { 
+            background: #1a1a1a; 
+            color: #00ff9d; 
+            font-family: 'Segoe UI', sans-serif; 
+            display: flex; 
+            flex-direction: column; 
+            align-items: center; 
+            padding: 50px; 
+        }
+        textarea { 
+            width: 80%; 
+            max-width: 600px; 
+            height: 150px; 
+            background: #2d2d2d; 
+            border: 2px solid #00ff9d; 
+            border-radius: 12px; 
+            color: #fff; 
+            padding: 20px; 
+            font-size: 18px; 
+            outline: none;
+            transition: 0.3s;
+        }
+        textarea:focus { border-color: #fff; box-shadow: 0 0 15px #00ff9d; }
+        #output { 
+            margin-top: 40px; 
+            font-size: 48px; 
+            transform: rotate(180deg); 
+            text-align: center;
+            min-height: 60px;
+            cursor: default;
+        }
     </style>
 </head>
 <body>
 
-<textarea id="input" placeholder="Type here..."></textarea>
+<textarea id="input" placeholder="Type here to flip it..."></textarea>
 <div id="output"></div>
 
 <script>
     const map = {
         'a': 'ɐ', 'b': 'q', 'c': 'ɔ', 'd': 'p', 'e': 'ǝ', 'f': 'ɟ', 'g': 'ƃ', 'h': 'ɥ', 
-        'i': 'ᴉ', 'j': 'ɾ', 'k': 'ʞ', 'l': 'ㄥ', 'm': 'ɯ', 'n': 'u', 'o': 'o', 'p': 'd', 
+        'i': 'ᴉ', 'j': 'ɾ', 'k': 'ʞ', 'l': '7', 'm': 'ɯ', 'n': 'u', 'o': 'o', 'p': 'd', 
         'q': 'b', 'r': 'ɹ', 's': 's', 't': 'ʇ', 'u': 'n', 'v': 'ʌ', 'w': 'ʍ', 'x': 'x', 
-        'y': 'ʎ', 'z': 'z', 'A': '∀', 'B': '𐐒', 'C': 'Ɔ', 'D': '◖', 'E': 'Ǝ', 'F': 'Ⅎ', 
-        'G': 'פ', 'H': 'H', 'I': 'I', 'J': 'Ր', 'K': 'ʞ', 'L': '˥', 'M': 'W', 'N': 'N', 
-        'O': 'O', 'P': 'Ԁ', 'Q': 'Ό', 'R': 'ᴚ', 'S': 'S', 'T': '⊥', 'U': '∩', 'V': 'Λ', 
-        'W': 'M', 'X': 'X', 'Y': '⅄', 'Z': 'Z', ' ': ' '
+        'y': 'ʎ', 'z': 'z', '7': '7'
     };
 
     const input = document.getElementById('input');
     const output = document.getElementById('output');
 
     input.addEventListener('input', () => {
-        const text = input.value.split('').reverse().join('');
-        output.innerText = text.split('').map(char => map[char] || char).join('');
+        output.innerText = input.value.split('').reverse().map(char => map[char.toLowerCase()] || char).join('');
     });
 </script>
 
