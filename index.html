@@ -1,45 +1,58 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>Upside Down Text</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Upside Down Tool</title>
     <style>
-        body { 
-            background: #1a1a1a; 
-            color: #00ff9d; 
-            font-family: 'Segoe UI', sans-serif; 
-            display: flex; 
-            flex-direction: column; 
-            align-items: center; 
-            padding: 50px; 
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            background: #0d1117;
+            color: #c9d1d9;
+            max-width: 800px;
+            margin: 40px auto;
+            padding: 20px;
         }
-        textarea { 
-            width: 80%; 
-            max-width: 600px; 
-            height: 150px; 
-            background: #2d2d2d; 
-            border: 2px solid #00ff9d; 
-            border-radius: 12px; 
-            color: #fff; 
-            padding: 20px; 
-            font-size: 18px; 
-            outline: none;
-            transition: 0.3s;
+        .container {
+            background: #161b22;
+            padding: 30px;
+            border-radius: 6px;
+            border: 1px solid #30363d;
         }
-        textarea:focus { border-color: #fff; box-shadow: 0 0 15px #00ff9d; }
-        #output { 
-            margin-top: 40px; 
-            font-size: 48px; 
-            transform: rotate(180deg); 
+        h2 { margin-top: 0; color: #58a6ff; }
+        label { display: block; margin: 15px 0 5px; font-weight: 600; font-size: 0.9em; }
+        textarea {
+            width: 100%;
+            padding: 12px;
+            background: #0d1117;
+            border: 1px solid #30363d;
+            border-radius: 6px;
+            color: #c9d1d9;
+            box-sizing: border-box;
+            font-family: monospace;
+            height: 120px;
+            resize: vertical;
+        }
+        .output-box { 
+            background: #0d1117; 
+            border-left: 4px solid #58a6ff; 
+            transform: rotate(180deg);
+            font-size: 24px;
             text-align: center;
-            min-height: 60px;
-            cursor: default;
         }
     </style>
 </head>
 <body>
 
-<textarea id="input" placeholder="Type here to flip it..."></textarea>
-<div id="output"></div>
+<div class="container">
+    <h2>Upside Down Tool</h2>
+    
+    <label for="inputText">Input Data</label>
+    <textarea id="inputText" placeholder="Type here..."></textarea>
+
+    <label for="outputText">Output Result</label>
+    <textarea id="outputText" class="output-box" readonly></textarea>
+</div>
 
 <script>
     const map = {
@@ -49,11 +62,11 @@
         'y': 'ʎ', 'z': 'z', '7': '7'
     };
 
-    const input = document.getElementById('input');
-    const output = document.getElementById('output');
+    const input = document.getElementById('inputText');
+    const output = document.getElementById('outputText');
 
     input.addEventListener('input', () => {
-        output.innerText = input.value.split('').reverse().map(char => map[char.toLowerCase()] || char).join('');
+        output.value = input.value.split('').reverse().map(char => map[char.toLowerCase()] || char).join('');
     });
 </script>
 
